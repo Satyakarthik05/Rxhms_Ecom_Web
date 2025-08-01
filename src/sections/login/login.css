@@ -1,0 +1,298 @@
+.router-link {
+  text-decoration: none;
+}
+
+.login-bg {
+  /* background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.3) 30%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url("../../assets/media/images/closeup-shot-dew-wet-leaves\ 1\ \(1\).png"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.e-mail-btn {
+  background-color: #fff;
+  color: #0d6efd;
+}
+
+.e-mail-btn:hover {
+  color: #333;
+}
+
+.login-section {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color);
+  padding: 0 20px;
+  height: 90vh;
+}
+
+.login-container {
+  padding: 40px;
+  width: 380px;
+}
+
+.login-header {
+  margin-bottom: 20px;
+}
+
+.header-links {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.welcome-text {
+  color: var(--text-color-secondary);
+}
+
+.form-item {
+  margin-bottom: 0;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.email-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.info-text {
+  color: var(--text-color-secondary);
+}
+
+/* Error text style */
+.error-text {
+  color: #ff0000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .login-section {
+    height: auto; /* Change according to design */
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1eae4;
+  }
+}
+
+.custom-phone {
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.01rem;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 48px;
+  margin-left: 0;
+  background: #ffffff;
+  border: 1.2px solid #334f3e;
+  border-radius: 5px;
+  line-height: 25px;
+  height: 35px;
+  width: 300px;
+  outline: none;
+}
+
+.custom-phone-address {
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.01rem;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 48px;
+  margin-left: 0;
+  background: #ffffff;
+  border: 2px solid #eed9cb !important;
+  border-radius: 5px;
+  line-height: 25px;
+  height: 35px;
+  width: 300px;
+  outline: none;
+}
+
+.custom-phone-address:focus {
+  border: 2px solid #eed9cb;
+  box-shadow: none !important;
+}
+
+.custom-phone:focus {
+  border: 1.5px solid #334f3e !important;
+  box-shadow: none !important;
+}
+
+.login-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6280cd;
+  /* background-color: #f1eae4; */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  max-width: 900px;
+  min-height: 50vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.card-image {
+  flex: 1;
+  /* background-image: url("../../assets/media/images/hms.png"); */
+  background-image: url("https://plus.unsplash.com/premium_photo-1661770294094-06167872e079?fm=jpg&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGhhcm1hY2llc3xlbnwwfHwwfHx8MA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card-form {
+  flex: 1;
+  /* padding: 40px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: none !important;
+}
+.card {
+  box-shadow: none !important;
+  border: none;
+  border-radius: none;
+}
+
+.form-title img {
+  max-width: 180px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #5a5a5a;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  border-color: #a47c6c !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  padding-top: 5px;
+  height: 40px;
+  background: #4e3c31;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #4a332c;
+}
+
+.toggle-login-method,
+.forgot-password,
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+  color: #a47c6c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toggle-login-method:hover,
+.forgot-password a:hover,
+.signup-link a:hover {
+  color: #5a4037;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.form-container {
+  padding: 13%;
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    flex-direction: column;
+    min-height: 85vh;
+    max-height: 100vh;
+  }
+  .card-image {
+    flex: 1;
+    /* background-image: url("../../assets/media/images/loginPageImage.jpg"); */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100% !important;
+    height: 45vh !important;
+  }
+  .form-container {
+    padding: 5%;
+  }
+}

@@ -1,0 +1,8 @@
+.my-cart-card {
+}
+
+@media screen and (min-width: 1440px) {
+  .my-cart-card {
+    width: 850px;
+  }
+}

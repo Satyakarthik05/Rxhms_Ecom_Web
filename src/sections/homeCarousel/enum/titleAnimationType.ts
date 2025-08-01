@@ -1,0 +1,8 @@
+export enum TitleAnimationType{
+    BLINKING = "BLINKING",
+    FADEIN = "FADEIN",
+    FADEOUT = "FADEOUT",
+    HORIZONTALSCROLLING = "HORIZONTALSCROLLING"
+
+}
+

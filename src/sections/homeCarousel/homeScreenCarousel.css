@@ -1,0 +1,50 @@
+.carousel-button-text {
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%; 
+  letter-spacing: 0.01rem;
+  text-transform: capitalize;
+}
+
+.carousel-button {
+  border: 1px solid #334f3e !important;
+  border-radius: 0.4375rem;
+  color: #fff !important;
+  padding: 0.5rem 2rem !important;
+  background: #334f3e !important;
+}
+
+.carousel-button:active {
+  scale: 0.98;
+  transition: scale(0.99);
+}
+
+.carousel-button:hover {
+  background: #334f3e !important;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .carousel-button-text {
+    font-size: 0.875rem;
+  }
+
+  .carousel-button {
+    padding: 0.4rem 1.5rem !important; 
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-button-text {
+    font-size: 0.75rem; 
+  }
+
+  .carousel-button {
+    padding: 0.3rem 0.9rem !important;
+    margin-bottom: 0.5rem; 
+  }
+}

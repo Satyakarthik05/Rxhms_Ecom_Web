@@ -1,0 +1,25 @@
+.e-mail-card-bg {
+  background-color: #fff;
+}
+
+.custom-gender-group .ant-radio-inner {
+  border-color: #334f3e;
+}
+
+.custom-gender-group .ant-radio:hover .ant-radio-inner,
+.custom-gender-group .ant-radio-input:focus + .ant-radio-inner {
+  border-color: #334f3e;
+}
+
+.custom-gender-group .ant-radio-checked .ant-radio-inner {
+  border-color: #334f3e;
+  background-color: #334f3e;
+}
+
+.custom-gender-group .ant-radio-checked .ant-radio-inner::after {
+  background-color: #fff;
+}
+
+.custom-gender-group .ant-radio-wrapper span {
+  color: #334f3e;
+}

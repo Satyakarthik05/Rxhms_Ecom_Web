@@ -1,0 +1,6 @@
+export interface RatingType {
+  PAYMENT: "PAYMENT";
+  SHIPPING: "SHIPPING";
+  EXPERIENCE: "EXPERIENCE";
+  PRODUCT: "PRODUCT";
+}

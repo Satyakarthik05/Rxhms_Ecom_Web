@@ -1,0 +1,4 @@
+export enum Code {
+  APPLICATION = "APPLICATION",
+  BUSINESS = "BUSINESS",
+}

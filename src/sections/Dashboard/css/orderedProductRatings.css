@@ -1,0 +1,37 @@
+.custom-rate .ant-rate-star {
+  font-size: 30px !important;
+}
+
+/* Default unselected star color */
+.custom-rate .ant-rate-star-first,
+.custom-rate .ant-rate-star-second {
+  color: #eed9cb !important;
+}
+
+/* Full selected star color */
+.custom-rate .ant-rate-star-full .ant-rate-star-first,
+.custom-rate .ant-rate-star-full .ant-rate-star-second {
+  color: #ffa500 !important;
+}
+
+/* Half selected star color - only the first part */
+.custom-rate .ant-rate-star-half .ant-rate-star-first {
+  color: #ffa500 !important;
+}
+
+/* Half selected star - keep second part unselected */
+.custom-rate .ant-rate-star-half .ant-rate-star-second {
+  color: #eed9cb !important;
+}
+
+/* Hover state - only the hovered star changes color */
+.custom-rate .ant-rate-star:hover .ant-rate-star-first,
+.custom-rate .ant-rate-star:hover .ant-rate-star-second {
+  color: #ffa500 !important;
+}
+
+/* Remove the default hover effect that affects all stars */
+.custom-rate .ant-rate-star:hover ~ .ant-rate-star .ant-rate-star-first,
+.custom-rate .ant-rate-star:hover ~ .ant-rate-star .ant-rate-star-second {
+  color: #eed9cb !important;
+}

@@ -1,0 +1,91 @@
+.router-link {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+.router-link:hover {
+  color: #000;
+}
+
+.router-link-black:hover {
+  color: #000;
+}
+
+.router-link-black {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  /* padding: 0 20px; */
+}
+
+.active-classname {
+  color: #1e2624;
+  /* text-decoration: underline; */
+}
+
+.megamenu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 900;
+}
+
+.menuItems:active {
+  color: #efb443 !important;
+  transform: scale(0.96);
+  transition: transform 0.2s ease-in-out;
+}
+
+.menuItems:hover {
+  color: #efb443 !important;
+  transform: scale(1.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* .header-item {
+} */
+
+.header:hover + .megamenu,
+.megamenu:hover {
+  display: block;
+}
+
+.headerDrawer {
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  /* margin: 0px 160px; */
+  margin: 0px 10%;
+}
+
+/* @media (max-width: 768px) {
+  .megamenus {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+  }
+} */
+
+.css-hhheco-MuiGrid-root > .MuiGrid-item {
+  padding-top: 0px !important;
+}
+
+@media (min-width: 600px) {
+  .css-1ygil4i-MuiToolbar-root {
+    padding-left: 24px;
+    padding-right: 0px !important;
+  }
+}

@@ -1,0 +1,42 @@
+@keyframes blinking {
+  50% { opacity: 0; }
+}
+
+.blinking {
+  animation: blinking 1s step-start infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+  
+}
+
+.fade-in {
+  animation: fadeIn 2.5s ease-in-out forwards;
+}
+
+@keyframes simpleFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: simpleFadeOut 0.8s ease-out forwards;
+}
+
+
+@keyframes horizontalScroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.horizontal-scroll {
+  white-space: nowrap;
+  display: inline-block;
+  animation: horizontalScroll 10s linear infinite;
+}

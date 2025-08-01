@@ -1,0 +1,28 @@
+
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: 2px solid #EED9CB ;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .custom-names{
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .custom-phone{
+    border-color: #F1EAE4 !important;
+
+  }

@@ -1,0 +1,9 @@
+.offer-text {
+  font-size: 15px;
+  padding: 5px;
+  margin: auto 0;
+  color: #000;
+  /* background-color: #4e3c31; */
+  background-color: hwb(165 12% 85%);
+  background-color: #a7c7e7;
+}
