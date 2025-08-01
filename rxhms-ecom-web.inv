@@ -1,0 +1,2 @@
+[rxhms-ecom-web]
+172.31.19.164 ansible_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no'
