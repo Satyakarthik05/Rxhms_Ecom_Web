@@ -28,13 +28,14 @@ import TrackOrderPage from "../../pages/trackOrder/trackOrderPage";
 import OrderReturnPage from "../../pages/orderReturns/orderReturnPage";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 import SidebarLayout from "../Dashboard/sidebarLayout";
+import WelcomeScreen from "../../nric_modules/WelcomeScreen";
 
 export const RouterSection = createBrowserRouter([
   {
     path: "/",
     element: (
       <ScroolTop>
-        <MainLayout />
+        <WelcomeScreen />
       </ScroolTop>
     ),
     children: [

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -26,9 +26,9 @@ import HomeScreen from '../VoipCalling/screens/HomeScreen';
 import VideoCallScreen from '../VoipCalling/components/VideoCallScreen';
 
 // GPS Tracking
-import LoginRegisterScreen from '../GpsTracking/screens/LoginRegisterScreen';
-import CustomerHomeScreen from '../GpsTracking/screens/CustomerHomeScreen';
-import ShopDetailScreen from '../GpsTracking/screens/ShopDetailScreen';
+import LoginRegisterScreen from '../GpsTracking/components/LoginRegisterScreen';
+import CustomerHomeScreen from '../GpsTracking/components/CustomerHomeScreen';
+import ShopDetailScreen from '../GpsTracking/components/ShopDetailScreen';
 import {Customer, Shop} from '../GpsTracking/types';
 
 export type RootStackParamList = {
@@ -99,7 +99,7 @@ const StackNavigator = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Stack.Navigator
         initialRouteName="Welcome"
         screenOptions={{headerShown: false}}>
@@ -163,12 +163,12 @@ const StackNavigator = () => {
           </Stack.Screen>
         )}
       </Stack.Navigator>
-    </div>
+    </SafeAreaView>
   );
 };
 
 export default StackNavigator;
 
-const styles = {
+const styles = StyleSheet.create({
   container: {flex: 1},
 });

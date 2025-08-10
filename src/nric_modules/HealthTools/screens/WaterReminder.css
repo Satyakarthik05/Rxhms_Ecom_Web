@@ -1,0 +1,283 @@
+/* WaterReminder.css */
+.water-reminder-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.section {
+  margin-bottom: 24px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.button-icon {
+  font-size: 20px;
+}
+
+.add-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.delete-button {
+  background-color: #F44336;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.done-button {
+  background-color: #FF9800;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.save-button {
+  background-color: #3498db;
+  color: white;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.save-button:hover {
+  background-color: #2980b9;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.empty-text {
+  color: #95a5a6;
+  font-size: 16px;
+}
+
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reminder-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.reminder-info {
+  flex: 1;
+}
+
+.reminder-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.reminder-amount {
+  font-size: 14px;
+  color: #3498db;
+  margin-top: 4px;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.reminder-time {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 4px 0;
+}
+
+.reminder-details {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin: 4px 0;
+}
+
+.reminder-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.modal-content {
+  padding: 16px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dfe6e9;
+  font-size: 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.time-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dfe6e9;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.repeat-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.repeat-input {
+  flex: 1;
+}
+
+.unit-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.unit-option {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #dfe6e9;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.unit-option.selected {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}

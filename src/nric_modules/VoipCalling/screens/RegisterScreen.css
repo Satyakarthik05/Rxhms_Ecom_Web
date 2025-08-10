@@ -1,0 +1,93 @@
+/* RegisterScreen.css */
+.register-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 16px;
+  background-color: #fff;
+}
+
+.input-icon {
+  font-size: 18px;
+  color: #aaa;
+  margin-right: 10px;
+}
+
+.register-input {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.toggle-icon {
+  font-size: 18px;
+  color: #aaa;
+}
+
+.register-button {
+  width: 100%;
+  background-color: #007BFF;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.register-button-text {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: blue;
+  text-decoration: underline;
+  font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}

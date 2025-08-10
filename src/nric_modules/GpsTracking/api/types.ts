@@ -28,3 +28,8 @@ export interface Order {
   itemName: string;
   status: string;
 }
+
+export interface LatLng {
+  lat: number;
+  lng: number;
+}
