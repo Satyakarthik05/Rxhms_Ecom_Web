@@ -6,7 +6,7 @@ import {
   Divider,
   Container,
 } from "@mui/material";
-import "../myCart/css/address.css";
+import "./css/address.css";
 import { usePostByBody } from "../../customHooks/usePostByBody";
 import { getLocalText } from "../../web-constants/constants";
 import { AddressMaster } from "../Dashboard/model/addressMaster";

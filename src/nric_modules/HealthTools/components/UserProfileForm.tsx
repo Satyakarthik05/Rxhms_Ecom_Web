@@ -1,29 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfileForm.css';
-
-interface UserProfile {
-  name: string;
-  age: number;
-  height: number;
-  weight: number;
-  targetWeight?: number;
-  gender: string;
-  activityLevel: string;
-  goal: string;
-  mealsPerDay: number;
-  waterIntake: number;
-  medicalConditions: string[];
-  allergies: string[];
-  dietaryRestrictions: string[];
-  vitaminDeficiencies: string[];
-  cuisinePreferences: string[];
-  dislikedFoods: string[];
-}
-
-interface DietPlan {
-  // Define DietPlan interface based on your needs
-}
+import { UserProfile, DietPlan } from '../types/diet';
 
 interface UserProfileFormProps {
   onSubmit: (profile: UserProfile) => Promise<DietPlan>;

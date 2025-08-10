@@ -98,7 +98,7 @@ const WaterReminder = () => {
   };
 
   const deleteReminder = (id: string) => {
-    if (confirm('Are you sure you want to delete this reminder?')) {
+    if (window.confirm('Are you sure you want to delete this reminder?')) {
       const updated = reminders.filter(r => r.id !== id);
       setReminders(updated);
       saveRemindersToStorage(updated);
