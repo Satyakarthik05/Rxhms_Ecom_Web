@@ -1,10 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import Chatbot from './chatbot/components/Chatbot'; // Adjust path as needed
+import { useQuestions } from './chatbot/hooks/useQuestions'; // Adjust path as needed
 import './WelcomeScreen.css';
 
 const WelcomeScreen = () => {
   const navigate = useNavigate();
+  const {
+    questions,
+    findQuestionById,
+    isLoading
+  } = useQuestions();
+
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="welcome-container">
@@ -19,7 +34,7 @@ const WelcomeScreen = () => {
           onClick={() => navigate('/health-tools')}
         >
           <div className="button-icon-container">
-            <Icon icon="mdi:medical-bag" className="button-icon" />
+            <Icon icon="mdi:medical-bag" className="button-icon" st />
           </div>
           <span className="button-text">Health Tools</span>
         </button>
@@ -44,6 +59,17 @@ const WelcomeScreen = () => {
           <span className="button-text">GPS Tracking</span>
         </button>
       </div>
+
+      {/* Chatbot Section */}
+      
+        
+        <div className="chatbot-content">
+          <Chatbot
+            questions={questions}
+            findQuestionById={findQuestionById}
+          />
+        </div>
+      
 
       <div className="welcome-footer">
         <p className="footer-text">v1.0.0</p>

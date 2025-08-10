@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, ArrowLeft, RotateCcw, Send } from 'lucide-react';
+
 import './Chatbot.css'; // We'll create this CSS file next
 
 interface Question {
   id: string;
   text: string;
-  parentId?: string;
+  parentId?: string | null;
   children?: Question[];
 }
 
@@ -229,7 +230,7 @@ const Chatbot: React.FC<ChatbotProps> = ({
             <span className="header-notification-dot"></span>
           </div>
           <div>
-            <h3 className="header-title">HealthCare Assistant</h3>
+            <h3 className="header-title" style={{ color: 'white' }}>HealthCare Assistant</h3>
             <p className="header-subtitle">Online • Ready to help</p>
           </div>
         </div>
@@ -252,7 +253,7 @@ const Chatbot: React.FC<ChatbotProps> = ({
             onClick={() => setIsOpen(false)}
             className="header-button"
           >
-            <span className="close-button">×</span>
+            <span className="close-button" style={{ color: 'white' }}>×</span>
           </button>
         </div>
       </div>

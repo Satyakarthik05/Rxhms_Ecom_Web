@@ -1,148 +1,170 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+// import React, {useState, useEffect} from 'react';
+// import {SafeAreaView, StyleSheet} from 'react-native';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Health Tools Types (IMPORTANT: single source of truth)
-import type { UserProfile, DietPlan } from "../HealthTools/types/diet";
+// import WelcomeScreen from '../WelcomeScreen';
+// import index from '../chatbot/index';
 
-// Screens & Components
-import WelcomeScreen from "../WelcomeScreen";
-import ChatbotIndex from "../chatbot/index";
-import { DietAIService } from "../HealthTools/services/dietAI";
-import HealthHomeScreen from "../HealthTools/screens/HomeScreen";
-import UserProfileFormProps from "../HealthTools/components/UserProfileForm";
-import DietPlanDisplay from "../HealthTools/components/DietPlanDisplay";
-import LoadingScreen from "../HealthTools/components/LoadingScreen";
-import BMICalculator from "../HealthTools/components/BMICalculator";
-import BreatheChallenge from "../HealthTools/components/BreatheChallenge";
-import MedicineReminderScreen from "../HealthTools/screens/MedicineReminderScreen";
-import WaterReminderScreen from "../HealthTools/screens/WaterReminderScreen";
+// // Health Tools
+// import {UserProfile, DietPlan} from '../HealthTools/types/diet';
+// import {DietAIService} from '../HealthTools/services/dietAI';
+// import HealthHomeScreen from '../HealthTools/screens/HomeScreen';
+// import UserProfileForm from '../HealthTools/components/UserProfileForm';
+// import DietPlanDisplay from '../HealthTools/components/DietPlanDisplay';
+// import LoadingScreen from '../HealthTools/components/LoadingScreen';
+// import BMICalculator from '../HealthTools/components/BMICalculator';
+// import BreatheChallenge from '../HealthTools/components/BreatheChallenge';
+// import MedicineReminderScreen from '../HealthTools/screens/MedicineReminderScreen';
+// import WaterReminderScreen from '../HealthTools/screens/WaterReminderScreen';
 
-// VoIP Calling
-import LoginScreen from "../VoipCalling/screens/LoginScreen";
-import RegisterScreen from "../VoipCalling/screens/RegisterScreen";
-import HomeScreen from "../VoipCalling/screens/HomeScreen";
-import VideoCallScreen from "../VoipCalling/components/VideoCallScreen";
+// // VoIP Calling
+// import LoginScreen from '../VoipCalling/screens/LoginScreen';
+// import RegisterScreen from '../VoipCalling/screens/RegisterScreen';
+// import HomeScreen from '../VoipCalling/screens/HomeScreen';
+// import VideoCallScreen from '../VoipCalling/components/VideoCallScreen';
 
-// GPS Tracking
-import LoginRegisterScreen from "../GpsTracking/components/LoginRegisterScreen";
-import CustomerHomeScreen from "../GpsTracking/components/CustomerHomeScreen";
-import ShopDetailScreen from "../GpsTracking/components/ShopDetailScreen";
-import type { Customer, Shop } from "../GpsTracking/types";
+// // GPS Tracking
+// import LoginRegisterScreen from '../GpsTracking/components/LoginRegisterScreen';
+// import CustomerHomeScreen from '../GpsTracking/components/CustomerHomeScreen';
+// import ShopDetailScreen from '../GpsTracking/components/ShopDetailScreen';
+// import {Customer, Shop} from '../GpsTracking/types';
 
-const StackNavigator: React.FC = () => {
-  // Health Tools state
-  const [dietPlan, setDietPlan] = useState<DietPlan | null>(null);
+// export type RootStackParamList = {
+//   Welcome: undefined;
+//   PatientLogin: undefined;
+//   Register: undefined;
+//   Home: undefined;
+//   CallSetup: undefined;
+//   VideoCallScreen: undefined;
+//   HealthHome: undefined;
+//   ProfileForm: undefined;
+//   Loading: undefined;
+//   DietPlan: undefined;
+//   BMICalculator: undefined;
+//   BreatheChallenge: undefined;
+//   WaterReminderScreen: undefined;
+//   MedicineReminderScreen: undefined;
 
-  // GPS Tracking state
-  const [customer, setCustomer] = useState<Customer | null>(null);
-  const [detailShop, setDetailShop] = useState<Shop | null>(null);
+//   // GPS Tracking routes
+//   GPSLogin: undefined;
+//   CustomerHome: undefined;
+//   ShopDetail: {shop: Shop};
+// };
 
-  // ✅ Use the same type `UserProfileFormProps['onSubmit']`
-  const handleProfileSubmit: UserProfileFormProps["onSubmit"] = async (
-    profile
-  ) => {
-    try {
-      const plan = await DietAIService.generateDietPlan(profile);
-      setDietPlan(plan);
-      return plan;
-    } catch (error) {
-      console.error("Error generating diet plan:", error);
-      throw error;
-    }
-  };
+// const Stack = createNativeStackNavigator<RootStackParamList>();
 
-  // Load GPS customer from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem("customer");
-    if (stored) setCustomer(JSON.parse(stored));
-  }, []);
+// const StackNavigator = () => {
+//   // Diet Plan State
+//   const [dietPlan, setDietPlan] = useState<DietPlan | null>(null);
 
-  const handleLogin = (cust: Customer) => {
-    setCustomer(cust);
-    localStorage.setItem("customer", JSON.stringify(cust));
-  };
+//   // GPS Tracking State
+//   const [customer, setCustomer] = useState<Customer | null>(null);
+//   const [detailShop, setDetailShop] = useState<Shop | null>(null);
 
-  const handleLogout = () => {
-    localStorage.removeItem("customer");
-    setCustomer(null);
-    setDetailShop(null);
-  };
+//   const handleProfileSubmit = async (profile: UserProfile) => {
+//     try {
+//       const plan = await DietAIService.generateDietPlan(profile);
+//       setDietPlan(plan);
+//       return plan;
+//     } catch (error) {
+//       console.error('Error generating diet plan:', error);
+//       throw error;
+//     }
+//   };
 
-  return (
-    <Router>
-      <div
-        style={{ height: "100vh", display: "flex", flexDirection: "column" }}
-      >
-        <Routes>
-          {/* Welcome */}
-          <Route path="/" element={<WelcomeScreen />} />
+//   // Load GPS customer from storage
+//   useEffect(() => {
+//     const loadCustomer = async () => {
+//       try {
+//         const stored = await AsyncStorage.getItem('customer');
+//         if (stored) setCustomer(JSON.parse(stored));
+//       } catch (err) {
+//         console.error('Error loading stored customer:', err);
+//       }
+//     };
+//     loadCustomer();
+//   }, []);
 
-          {/* Chatbot */}
-          <Route path="/main" element={<ChatbotIndex />} />
+//   const handleLogin = async (cust: Customer) => {
+//     setCustomer(cust);
+//     await AsyncStorage.setItem('customer', JSON.stringify(cust));
+//   };
 
-          {/* VoIP Calling */}
-          <Route path="/patient-login" element={<LoginScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/home" element={<HomeScreen />} />
-          <Route path="/video-call" element={<VideoCallScreen />} />
+//   const handleLogout = async () => {
+//     await AsyncStorage.removeItem('customer');
+//     setCustomer(null);
+//     setDetailShop(null);
+//   };
 
-          {/* Health Tools */}
-          <Route path="/health-home" element={<HealthHomeScreen />} />
-          <Route
-            path="/profile-form"
-            element={<UserProfileForm onSubmit={handleProfileSubmit} />}
-          />
-          <Route path="/loading" element={<LoadingScreen />} />
-          <Route path="/diet-plan" element={<DietPlanDisplay />} />
-          <Route path="/bmi-calculator" element={<BMICalculator />} />
-          <Route path="/breathe-challenge" element={<BreatheChallenge />} />
-          <Route path="/water-reminder" element={<WaterReminderScreen />} />
-          <Route
-            path="/medicine-reminder"
-            element={<MedicineReminderScreen />}
-          />
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       <Stack.Navigator
+//         initialRouteName="Welcome"
+//         screenOptions={{headerShown: false}}>
+//         {/* Welcome Screen */}
+//         <Stack.Screen name="Welcome" component={WelcomeScreen} />
+//         {/* Chatbot entry */}
+//         <Stack.Screen name="Main Screen" component={index} />
 
-          {/* GPS Tracking */}
-          {!customer ? (
-            <Route
-              path="/gps-login"
-              element={<LoginRegisterScreen onLogin={handleLogin} />}
-            />
-          ) : detailShop ? (
-            <Route
-              path="/shop-detail"
-              element={
-                <ShopDetailScreen
-                  shop={detailShop}
-                  customer={customer}
-                  onBack={() => setDetailShop(null)}
-                />
-              }
-            />
-          ) : (
-            <Route
-              path="/customer-home"
-              element={
-                <CustomerHomeScreen
-                  customer={customer}
-                  onLogout={handleLogout}
-                  onDetail={(shop) => setDetailShop(shop)}
-                />
-              }
-            />
-          )}
+//         {/* VoIP Calling */}
+//         <Stack.Screen name="PatientLogin" component={LoginScreen} />
+//         <Stack.Screen name="Register" component={RegisterScreen} />
+//         <Stack.Screen name="Home" component={HomeScreen} />
+//         <Stack.Screen name="VideoCallScreen" component={VideoCallScreen} />
 
-          {/* Redirect unknown routes */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-};
+//         {/* Health Tools */}
+//         <Stack.Screen name="HealthHome" component={HealthHomeScreen} />
+//         <Stack.Screen name="ProfileForm">
+//           {() => <UserProfileForm onSubmit={handleProfileSubmit} />}
+//         </Stack.Screen>
+//         <Stack.Screen name="Loading" component={LoadingScreen} />
+//         <Stack.Screen name="DietPlan" component={DietPlanDisplay} />
+//         <Stack.Screen name="BMICalculator" component={BMICalculator} />
+//         <Stack.Screen name="BreatheChallenge" component={BreatheChallenge} />
+//         <Stack.Screen
+//           name="WaterReminderScreen"
+//           component={WaterReminderScreen}
+//         />
+//         <Stack.Screen
+//           name="MedicineReminderScreen"
+//           component={MedicineReminderScreen}
+//         />
 
-export default StackNavigator;
+//         {/* GPS Tracking */}
+//         {!customer ? (
+//           <Stack.Screen name="GPSLogin">
+//             {() => <LoginRegisterScreen onLogin={handleLogin} />}
+//           </Stack.Screen>
+//         ) : detailShop ? (
+//           <Stack.Screen name="ShopDetail">
+//             {() => (
+//               <ShopDetailScreen
+//                 shop={detailShop}
+//                 customer={customer}
+//                 onBack={() => setDetailShop(null)}
+//               />
+//             )}
+//           </Stack.Screen>
+//         ) : (
+//           <Stack.Screen name="CustomerHome">
+//             {() => (
+//               <CustomerHomeScreen
+//                 customer={customer}
+//                 onLogout={handleLogout}
+//                 onDetail={shop => setDetailShop(shop)}
+//               />
+//             )}
+//           </Stack.Screen>
+//         )}
+//       </Stack.Navigator>
+//     </SafeAreaView>
+//   );
+// };
+
+// export default StackNavigator;
+
+// const styles = StyleSheet.create({
+//   container: {flex: 1},
+// });
+export {};

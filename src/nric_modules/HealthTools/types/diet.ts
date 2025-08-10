@@ -1,8 +1,10 @@
+export type Gender = 'male' | 'female' | 'other';
+
 export interface UserProfile {
   // Basic Info
   name: string;
   age: number;
-  gender: 'male' | 'female' | 'other';
+  gender: Gender;
   height: number; // in cm
   weight: number; // in kg
   

@@ -85,7 +85,7 @@ const RegisterScreen = () => {
         </button>
 
         <button 
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/patient-login')}
           className="login-link"
         >
           Already have an account? Login

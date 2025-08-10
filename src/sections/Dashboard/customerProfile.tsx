@@ -43,7 +43,7 @@ import PhoneInput from "react-phone-input-2";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { ReactComponent as TrashIcon } from "../../assets/media/icons/redTrash.svg";
 import { useTheme } from "@mui/material/styles";
-import "../Dashboard/css/customerProfileDrawer.css";
+import "./css/customerProfileDrawer.css";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import CloseIcon from "@mui/icons-material/Close";
 

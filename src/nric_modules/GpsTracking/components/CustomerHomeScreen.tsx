@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import MapComponent from "./MapComponent";
 import MapUtils from "./MapUtils";
+import { GoogleMap } from '@react-google-maps/api';
 import {
   fetchShopsForCustomer,
   updateCustomerAddress,
@@ -318,7 +319,7 @@ const CustomerHomeScreen: React.FC<Props> = ({
       <div style={styles.mapSection}>
         {location ? (
           <MapComponent
-            ref={mapRef}
+            ref={mapRef as React.Ref<GoogleMap | null>}
             center={location}
             zoom={14}
             markers={shops.map((shop) => ({

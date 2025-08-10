@@ -10,7 +10,7 @@ import type { RootState } from "../../Redux/store/store";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { usePostByBody } from "../../customHooks/usePostByBody";
-import { CreateAddressUri } from "../myCart/service/myCartService";
+import { CreateAddressUri } from "./service/myCartService";
 import PhoneInput from "react-phone-input-2";
 import { AddressType } from "../Dashboard/enum/addressType";
 import type { AddressMaster } from "../Dashboard/model/addressMaster";

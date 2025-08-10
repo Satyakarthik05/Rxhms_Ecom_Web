@@ -10,7 +10,7 @@ import { GenderType } from "../register/model/genderType";
 import PhoneInput from "react-phone-input-2";
 import { UpdateProfileUrl } from "./profileService/profileService";
 import { usePutByBody } from "../../customHooks/usePutByBody";
-import "../Dashboard/css/customerProfileDrawer.css";
+import "./css/customerProfileDrawer.css";
 
 interface DrawerProps {
   open: boolean;
