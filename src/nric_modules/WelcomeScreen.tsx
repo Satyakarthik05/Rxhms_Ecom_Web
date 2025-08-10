@@ -34,7 +34,7 @@ const WelcomeScreen = () => {
           onClick={() => navigate('/health-tools')}
         >
           <div className="button-icon-container">
-            <Icon icon="mdi:medical-bag" className="button-icon" />
+            <Icon icon="mdi:medical-bag" className="button-icon" st />
           </div>
           <span className="button-text">Health Tools</span>
         </button>
