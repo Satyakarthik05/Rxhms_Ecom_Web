@@ -1,31 +1,21 @@
 export type Gender = 'male' | 'female' | 'other';
 
 export interface UserProfile {
-  // Basic Info
-  name: string;
+  fullName: string;
   age: number;
-  gender: Gender;
-  height: number; // in cm
-  weight: number; // in kg
-  
-  // Activity & Goals
+  gender: 'male' | 'female' | 'other';
+  height: number;
+  weight: number;
+  targetWeight: number;
   activityLevel: 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
-  goal: 'lose_weight' | 'maintain_weight' | 'gain_weight' | 'muscle_gain' | 'general_health';
-  targetWeight?: number;
-  
-  // Health Conditions
+goal: 'lose_weight' | 'gain_weight' | 'maintain_weight' | 'muscle_gain'
   medicalConditions: string[];
+  vitaminDeficiencies: string[];
+  preferredCuisines: string[];
+  mealsPerDay: number;
+  waterIntake: number;
   allergies: string[];
   dietaryRestrictions: string[];
-  
-  // Vitamin Deficiencies
-  vitaminDeficiencies: string[];
-  
-  // Preferences
-  cuisinePreferences: string[];
-  dislikedFoods: string[];
-  mealsPerDay: number;
-  waterIntake: number; // glasses per day
 }
 
 export interface NutritionalNeeds {

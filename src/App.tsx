@@ -6,10 +6,8 @@ import WelcomeScreen from './nric_modules/WelcomeScreen';
 import ChatbotIndex from './nric_modules/chatbot/index';
 
 // Health Tools
-import { UserProfile, DietPlan } from './nric_modules/HealthTools/types/diet';
-import { DietAIService } from './nric_modules/HealthTools/services/dietAI';
+import { DietPlan } from './nric_modules/HealthTools/types/diet';
 import HealthHomeScreen from './nric_modules/HealthTools/screens/HomeScreen';
-import UserProfileForm from './nric_modules/HealthTools/components/UserProfileForm';
 import DietPlanDisplay from './nric_modules/HealthTools/components/DietPlanDisplay';
 import LoadingScreen from './nric_modules/HealthTools/components/LoadingScreen';
 import BMICalculator from './nric_modules/HealthTools/components/BMICalculator';
@@ -36,17 +34,6 @@ const App: React.FC = () => {
   // GPS Tracking state
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [detailShop, setDetailShop] = useState<Shop | null>(null);
-
-  const handleProfileSubmit = async (profile: UserProfile) => {
-    try {
-      const plan = await DietAIService.generateDietPlan(profile);
-      setDietPlan(plan);
-      return plan;
-    } catch (error) {
-      console.error('Error generating diet plan:', error);
-      throw error;
-    }
-  };
 
   // Load GPS customer from localStorage
   useEffect(() => {
@@ -84,7 +71,6 @@ const App: React.FC = () => {
 
         {/* Health Tools */}
         <Route path="/health-tools" element={<HealthHomeScreen />} />
-        <Route path="/profile-form" element={<UserProfileForm onSubmit={handleProfileSubmit} />} />
         <Route path="/loading" element={<LoadingScreen />} />
         <Route path="/diet-plan" element={<DietPlanDisplay />} />
         <Route path="/bmi-calculator" element={<BMICalculator />} />
@@ -153,4 +139,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App; 
+export default App;

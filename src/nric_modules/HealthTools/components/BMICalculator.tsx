@@ -12,7 +12,7 @@ const BMICalculator = () => {
     loadHistory();
   }, []);
 
-  const loadHistory = async () => {
+  const loadHistory = () => {
     try {
       const savedHistory = localStorage.getItem('bmiHistory');
       if (savedHistory) {
@@ -23,7 +23,7 @@ const BMICalculator = () => {
     }
   };
 
-  const saveToHistory = async (newBmi: number) => {
+  const saveToHistory = (newBmi: number) => {
     const newEntry = {
       date: new Date().toLocaleDateString(),
       bmi: newBmi,
@@ -68,70 +68,71 @@ const BMICalculator = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">BMI Calculator</h1>
+    <div className="bmi-wrapper">
+      <h4 className="bmi-subtitle">Health & Fitness</h4>
+      <h1 className="bmi-title">BMI Calculator</h1>
+      <p className="bmi-description">
+        Calculate your Body Mass Index and track your history.
+      </p>
 
-      <div className="input-container">
-        <label className="label">Height (cm)</label>
-        <input
-          className="input"
-          type="number"
-          placeholder="e.g. 170"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-        />
-      </div>
+      <div className="bmi-container">
+        {/* Left Card - Input */}
+        <div className="bmi-card">
+          <h2 className="bmi-section-title">Enter your details</h2>
 
-      <div className="input-container">
-        <label className="label">Weight (kg)</label>
-        <input
-          className="input"
-          type="number"
-          placeholder="e.g. 65"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-        />
-      </div>
+          <label className="bmi-label">Height (cm)</label>
+          <input
+            type="number"
+            placeholder="e.g. 170"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            className="bmi-input"
+          />
 
-      <button className="button" onClick={calculateBmi}>
-        Calculate BMI
-      </button>
+          <label className="bmi-label">Weight (kg)</label>
+          <input
+            type="number"
+            placeholder="e.g. 65"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            className="bmi-input"
+          />
 
-      {bmi !== null && (
-        <div className="result-container">
-          <h2 className="result-title">Your Result</h2>
-          <div className="bmi-circle" style={{ borderColor: getBmiColor() }}>
-            <span className="bmi-value" style={{ color: getBmiColor() }}>{bmi}</span>
-          </div>
-          <p className="bmi-category" style={{ color: getBmiColor() }}>
-            {bmiCategory}
-          </p>
-
-          <div className="bmi-scale">
-            {[
-              { label: 'Underweight', range: '< 18.5', color: '#3B82F6' },
-              { label: 'Normal', range: '18.5 - 24.9', color: '#10B981' },
-              { label: 'Overweight', range: '25 - 29.9', color: '#F59E0B' },
-              { label: 'Obese', range: '> 30', color: '#EF4444' },
-            ].map((item, i) => (
-              <div key={i} className="scale-item">
-                <div className="scale-indicator" style={{ backgroundColor: item.color }} />
-                <span className="scale-text">{item.label}</span>
-                <span className="scale-range">{item.range}</span>
-              </div>
-            ))}
-          </div>
+          <button className="bmi-button" onClick={calculateBmi}>
+            Calculate BMI
+          </button>
         </div>
-      )}
 
+        {/* Right Card - Result */}
+        <div className="bmi-card">
+          <h2 className="bmi-section-title">Your Result</h2>
+
+          {bmi !== null ? (
+            <>
+              <p className="bmi-result-value" style={{ color: getBmiColor() }}>
+                {bmi}
+              </p>
+              <p className="bmi-result-category" style={{ color: getBmiColor() }}>
+                {bmiCategory}
+              </p>
+            </>
+          ) : (
+            <p className="bmi-placeholder">
+              Enter your height and weight to see your BMI.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* History Section */}
       {history.length > 0 && (
-        <div className="history-container">
-          <h3 className="history-title">Your BMI History</h3>
+        <div className="bmi-history-card">
+          <h3 className="bmi-history-title">Your BMI History</h3>
           {history.map((item, index) => (
-            <div key={index} className="history-item">
-              <span className="history-date">{item.date}</span>
+            <div key={index} className="bmi-history-item">
+              <span className="bmi-history-date">{item.date}</span>
               <span
-                className="history-bmi"
+                className="bmi-history-bmi"
                 style={{
                   color:
                     item.bmi < 18.5

@@ -11,7 +11,7 @@ const HealthHomeScreen = () => {
       icon: 'mdi:food-apple',
       name: 'Diet Planner',
       description: 'Get personalized meal plans based on your profile',
-      action: () => navigate('/profile-form'),
+      action: () => navigate('/diet-plan'),
       color: '#10B981',
     },
     {
@@ -46,7 +46,7 @@ const HealthHomeScreen = () => {
 
   return (
     <div className="container">
-      <h1 className="title">AI Health Companion</h1>
+      <h1 className="title">CHS Health Companion</h1>
       <p className="subtitle">Your personalized health and wellness assistant</p>
       
       <div className="features-container">
@@ -72,16 +72,7 @@ const HealthHomeScreen = () => {
         ))}
       </div>
       
-      <div className="info-card">
-        <h3 className="info-title">About This App</h3>
-        <p className="info-text">
-          This health companion provides personalized diet plans, BMI tracking, 
-          and breathing exercises to improve your overall wellness.
-        </p>
-        <p className="disclaimer">
-          Note: This app is for educational purposes only. Consult a healthcare professional before making significant changes.
-        </p>
-      </div>
+      
     </div>
   );
 };
