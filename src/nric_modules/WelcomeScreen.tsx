@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Chatbot from './chatbot/components/Chatbot'; // Adjust path as needed
-import { useQuestions } from './chatbot/hooks/useQuestions'; // Adjust path as needed
+import Chatbot from './chatbot/components/Chatbot'; 
+import { useQuestions } from './chatbot/hooks/useQuestions'; 
 import './WelcomeScreen.css';
 
 const WelcomeScreen = () => {
@@ -34,7 +34,7 @@ const WelcomeScreen = () => {
           onClick={() => navigate('/health-tools')}
         >
           <div className="button-icon-container">
-            <Icon icon="mdi:medical-bag" className="button-icon" st />
+            <Icon icon="mdi:medical-bag" className="button-icon"  />
           </div>
           <span className="button-text">Health Tools</span>
         </button>
