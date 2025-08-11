@@ -52,13 +52,11 @@ const MedicineReminderScreen = () => {
   const [editingMedicineId, setEditingMedicineId] = useState<string | null>(null);
   const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
   const [selectedMedicines, setSelectedMedicines] = useState<string[]>([]);
-
   const [title, setTitle] = useState('Take Medicine');
   const [firstTime, setFirstTime] = useState(new Date());
   const [repeatEvery, setRepeatEvery] = useState('24');
   const [repeatUnit, setRepeatUnit] = useState<'minutes' | 'hours' | 'days'>('days');
   const [repeatCount, setRepeatCount] = useState('5');
-  const [showPicker, setShowPicker] = useState(false);
   const [showMedicineModal, setShowMedicineModal] = useState(false);
   const [showReminderModal, setShowReminderModal] = useState(false);
 
@@ -100,7 +98,7 @@ const MedicineReminderScreen = () => {
   const addOrUpdateMedicine = async () => {
     const { name, dosage, quantity } = currentMedicine;
     if (!name || !dosage || !quantity) {
-      alert('Error: Please fill all medicine fields');
+      alert('Please fill all medicine fields');
       return;
     }
 
@@ -139,7 +137,7 @@ const MedicineReminderScreen = () => {
 
   const saveReminders = async () => {
     if (selectedMedicines.length === 0) {
-      alert('Error: Please select at least one medicine');
+      alert('Please select at least one medicine');
       return;
     }
 
@@ -179,7 +177,7 @@ const MedicineReminderScreen = () => {
     await mockStorage.saveReminders(allReminders);
     resetReminderForm();
     setShowReminderModal(false);
-    alert('Success: Reminders saved successfully!');
+    alert('Reminders saved successfully!');
   };
 
   const editReminder = (id: string) => {
@@ -244,45 +242,52 @@ const MedicineReminderScreen = () => {
     </div>
   );
 
-  const renderReminderItem = (item: Reminder) => (
-    <div key={item.id} className="reminder-card">
-      <div className="reminder-info">
-        <div className="reminder-title">{item.title}</div>
-        <div className="reminder-time">
-          {new Date(item.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+  const renderReminderItem = (item: Reminder) => {
+    const reminderTime = new Date(item.time);
+    const now = new Date();
+    const isPast = reminderTime < now;
+
+    return (
+      <div key={item.id} className={`reminder-card ${isPast ? 'past-reminder' : ''}`}>
+        <div className="reminder-info">
+          <div className="reminder-title">{item.title}</div>
+          <div className="reminder-time">
+            {reminderTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {isPast && <span className="past-badge">Past</span>}
+          </div>
+          <div className="reminder-details">
+            Repeats every {item.interval}
+          </div>
+          <div className="reminder-meds">
+            {item.medicineIds.map(id => {
+              const med = medicines.find(m => m.id === id);
+              return med ? `${med.name} (${med.quantity} ${med.dosage})` : '';
+            }).join(', ')}
+          </div>
         </div>
-        <div className="reminder-details">
-          Repeats every {item.interval}
-        </div>
-        <div className="reminder-meds">
-          {item.medicineIds.map(id => {
-            const med = medicines.find(m => m.id === id);
-            return med ? `${med.name} (${med.quantity} ${med.dosage})` : '';
-          }).join(', ')}
+        <div className="reminder-actions">
+          <button 
+            className="button edit-button"
+            onClick={() => editReminder(item.id)}
+          >
+            Edit
+          </button>
+          <button 
+            className="button delete-button"
+            onClick={() => deleteReminder(item.id)}
+          >
+            Delete
+          </button>
+          <button 
+            className="button done-button"
+            onClick={() => markAsDone(item.id)}
+          >
+            Done
+          </button>
         </div>
       </div>
-      <div className="reminder-actions">
-        <button 
-          className="button edit-button"
-          onClick={() => editReminder(item.id)}
-        >
-          Edit
-        </button>
-        <button 
-          className="button delete-button"
-          onClick={() => deleteReminder(item.id)}
-        >
-          Delete
-        </button>
-        <button 
-          className="button done-button"
-          onClick={() => markAsDone(item.id)}
-        >
-          Done
-        </button>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="container">
@@ -449,11 +454,13 @@ const MedicineReminderScreen = () => {
                   placeholder="e.g. 2"
                   value={repeatEvery}
                   onChange={(e) => setRepeatEvery(e.target.value)}
+                  min="1"
                 />
                 <div className="unit-row">
                   {['minutes', 'hours', 'days'].map(unit => (
                     <button
                       key={unit}
+                      type="button"
                       className={`unit-option ${repeatUnit === unit ? 'unit-option-selected' : ''}`}
                       onClick={() => setRepeatUnit(unit as any)}
                     >
@@ -470,6 +477,7 @@ const MedicineReminderScreen = () => {
                 placeholder="e.g. 3"
                 value={repeatCount}
                 onChange={(e) => setRepeatCount(e.target.value)}
+                min="1"
               />
 
               <label className="label">Select Medicines</label>
