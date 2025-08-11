@@ -370,34 +370,42 @@ const MedicineReminderScreen = () => {
               </button>
             </div>
 
-            <div className="modal-content">
-              <label className="label">Medicine Name</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="e.g. Paracetamol"
-                value={currentMedicine.name}
-                onChange={(e) => setCurrentMedicine({ ...currentMedicine, name: e.target.value })}
-              />
+            <div className="modal-content-scrollable">
+              <div className="form-group">
+                <label className="label">Medicine Name</label>
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. Paracetamol"
+                  value={currentMedicine.name}
+                  onChange={(e) => setCurrentMedicine({ ...currentMedicine, name: e.target.value })}
+                />
+              </div>
 
-              <label className="label">Dosage Type</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="e.g. tablet, mg, ml"
-                value={currentMedicine.dosage}
-                onChange={(e) => setCurrentMedicine({ ...currentMedicine, dosage: e.target.value })}
-              />
+              <div className="form-group">
+                <label className="label">Dosage Type</label>
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. tablet, mg, ml"
+                  value={currentMedicine.dosage}
+                  onChange={(e) => setCurrentMedicine({ ...currentMedicine, dosage: e.target.value })}
+                />
+              </div>
 
-              <label className="label">Quantity</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="e.g. 1, 2, 500"
-                value={currentMedicine.quantity}
-                onChange={(e) => setCurrentMedicine({ ...currentMedicine, quantity: e.target.value })}
-              />
+              <div className="form-group">
+                <label className="label">Quantity</label>
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="e.g. 1, 2, 500"
+                  value={currentMedicine.quantity}
+                  onChange={(e) => setCurrentMedicine({ ...currentMedicine, quantity: e.target.value })}
+                />
+              </div>
+            </div>
 
+            <div className="modal-footer">
               <button 
                 className="button save-button"
                 onClick={addOrUpdateMedicine}
@@ -412,7 +420,7 @@ const MedicineReminderScreen = () => {
       {/* Reminder Modal */}
       {showReminderModal && (
         <div className="modal-overlay">
-          <div className="modal-container">
+          <div className="modal-container reminder-modal">
             <div className="modal-header">
               <h2 className="modal-title">
                 {editingReminderId ? 'Edit Reminder' : 'Add New Reminder'}
@@ -428,80 +436,92 @@ const MedicineReminderScreen = () => {
               </button>
             </div>
 
-            <div className="modal-content">
-              <label className="label">Reminder Title</label>
-              <input
-                className="input"
-                type="text"
-                placeholder="e.g. Morning Dose"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-
-              <label className="label">Reminder Time</label>
-              <input
-                className="input"
-                type="time"
-                value={firstTime.toTimeString().substring(0, 5)}
-                onChange={onTimeChange}
-              />
-
-              <label className="label">Repeat Every</label>
-              <div className="repeat-container">
+            <div className="modal-content-scrollable">
+              <div className="form-group">
+                <label className="label">Reminder Title</label>
                 <input
-                  className="input repeat-input"
-                  type="number"
-                  placeholder="e.g. 2"
-                  value={repeatEvery}
-                  onChange={(e) => setRepeatEvery(e.target.value)}
-                  min="1"
+                  className="input"
+                  type="text"
+                  placeholder="e.g. Morning Dose"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
-                <div className="unit-row">
-                  {['minutes', 'hours', 'days'].map(unit => (
-                    <button
-                      key={unit}
-                      type="button"
-                      className={`unit-option ${repeatUnit === unit ? 'unit-option-selected' : ''}`}
-                      onClick={() => setRepeatUnit(unit as any)}
-                    >
-                      {unit}
-                    </button>
-                  ))}
+              </div>
+
+              <div className="form-group">
+                <label className="label">Reminder Time</label>
+                <input
+                  className="input"
+                  type="time"
+                  value={firstTime.toTimeString().substring(0, 5)}
+                  onChange={onTimeChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="label">Repeat Every</label>
+                <div className="repeat-container">
+                  <input
+                    className="input repeat-input"
+                    type="number"
+                    placeholder="e.g. 2"
+                    value={repeatEvery}
+                    onChange={(e) => setRepeatEvery(e.target.value)}
+                    min="1"
+                  />
+                  <div className="unit-row">
+                    {['minutes', 'hours', 'days'].map(unit => (
+                      <button
+                        key={unit}
+                        type="button"
+                        className={`unit-option ${repeatUnit === unit ? 'unit-option-selected' : ''}`}
+                        onClick={() => setRepeatUnit(unit as any)}
+                      >
+                        {unit}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <label className="label">Number of Times to Repeat</label>
-              <input
-                className="input"
-                type="number"
-                placeholder="e.g. 3"
-                value={repeatCount}
-                onChange={(e) => setRepeatCount(e.target.value)}
-                min="1"
-              />
+              <div className="form-group">
+                <label className="label">Number of Times to Repeat</label>
+                <input
+                  className="input"
+                  type="number"
+                  placeholder="e.g. 3"
+                  value={repeatCount}
+                  onChange={(e) => setRepeatCount(e.target.value)}
+                  min="1"
+                />
+              </div>
 
-              <label className="label">Select Medicines</label>
-              {medicines.length === 0 ? (
-                <div className="warning-text">Please add medicines first</div>
-              ) : (
-                <div className="medicines-list">
-                  {medicines.map(med => (
-                    <div
-                      key={med.id}
-                      className={`medicine-in-reminder ${selectedMedicines.includes(med.id) ? 'selected-medicine' : ''}`}
-                      onClick={() => toggleMedicineSelection(med.id)}
-                    >
-                      <div className="medicine-in-reminder-text">
-                        {med.name} ({med.quantity} {med.dosage})
+              <div className="form-group">
+                <label className="label">Select Medicines</label>
+                {medicines.length === 0 ? (
+                  <div className="warning-text">Please add medicines first</div>
+                ) : (
+                  <div className="medicines-list">
+                    {medicines.map(med => (
+                      <div
+                        key={med.id}
+                        className={`medicine-in-reminder ${selectedMedicines.includes(med.id) ? 'selected-medicine' : ''}`}
+                        onClick={() => toggleMedicineSelection(med.id)}
+                      >
+                        <div className="medicine-in-reminder-text">
+                          {med.name} ({med.quantity} {med.dosage})
+                        </div>
+                        {selectedMedicines.includes(med.id) && (
+                          <div className="checkmark">✓</div>
+                        )}
                       </div>
-                      {selectedMedicines.includes(med.id) && (
-                        <div className="checkmark">✓</div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
 
+            <div className="modal-footer">
               <button 
                 className="button save-button"
                 onClick={saveReminders}

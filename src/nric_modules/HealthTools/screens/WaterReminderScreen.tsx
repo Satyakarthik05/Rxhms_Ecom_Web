@@ -206,7 +206,7 @@ const WaterReminder = () => {
               </button>
             </div>
 
-            <div className="modal-content">
+            <div className="modal-content-scrollable">
               <label className="label">Reminder Title</label>
               <input
                 type="text"

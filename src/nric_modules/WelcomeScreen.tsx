@@ -60,16 +60,12 @@ const WelcomeScreen = () => {
         </button>
       </div>
 
-      {/* Chatbot Section */}
-      
-        
-        <div className="chatbot-content">
-          <Chatbot
-            questions={questions}
-            findQuestionById={findQuestionById}
-          />
-        </div>
-      
+      <div className="chatbot-content">
+        <Chatbot
+          questions={questions}
+          findQuestionById={findQuestionById}
+        />
+      </div>
 
       <div className="welcome-footer">
         <p className="footer-text">v1.0.0</p>
