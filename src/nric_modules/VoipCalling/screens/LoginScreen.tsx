@@ -45,6 +45,7 @@ const LoginScreen = () => {
 
   return (
     <div className="login-container">
+      
       <div className="login-card">
         <h1 className="login-title">Patient Login</h1>
 
@@ -60,6 +61,7 @@ const LoginScreen = () => {
         </div>
 
         <div className="input-container">
+          
           <Icon icon="mdi:lock" className="input-icon" />
           <input
             type={showPassword ? 'text' : 'password'}

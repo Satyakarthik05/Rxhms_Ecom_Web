@@ -2,15 +2,38 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Trophy, Target, X } from 'lucide-react';
 import './BreatheChallenge.css';
 
-interface Level {
-  level: number;
-  name: string;
-  minDuration: number;
-  color: string;
-  icon: string;
-}
+// Constants for text and values
+const TEXT = {
+  TITLE: 'Breath Challenge',
+  SUBTITLE: 'Test your breath control and unlock new levels',
+  BUTTON_HOLD: 'Press & Hold',
+  BUTTON_HOLDING: 'Hold your breath...',
+  BUTTON_BREATHE_IN: 'Take a deep breath in...',
+  BUTTON_BREATHE_OUT: 'Now breathe out...',
+  STAT_BEST_TIME: 'Best Time',
+  STAT_ATTEMPTS: 'Attempts',
+  LEVEL_UP_TITLE: 'Level Up!',
+  LEVEL_UP_TEXT: "You've reached",
+  ACHIEVEMENT_TITLE: 'Achievement Path',
+  RESET_BUTTON: 'Reset Progress',
+  PROGRESS_LABEL: 'Progress to',
+  PROGRESS_TARGET: 'target',
+  LEVEL_NOW: 'NOW',
+  LEVEL_START: 'Start',
+};
 
-const LEVELS: Level[] = [
+const TIMING = {
+  BREATHE_IN_DURATION: 3000, // 3 seconds
+  BREATHE_OUT_DURATION: 3000, // 3 seconds
+  TIMER_INTERVAL: 100, // 0.1 seconds
+};
+
+const COLORS = {
+  LOCKED_BAR: 'rgba(255, 255, 255, 0.1)',
+  DEFAULT_GLOW: 'none',
+};
+
+const LEVELS = [
   { level: 1, name: "Beginner", minDuration: 0, color: "#10b981", icon: "🫁" },
   { level: 2, name: "Learner", minDuration: 10, color: "#059669", icon: "💨" },
   { level: 3, name: "Apprentice", minDuration: 20, color: "#047857", icon: "🌊" },
@@ -19,11 +42,24 @@ const LEVELS: Level[] = [
   { level: 6, name: "Master", minDuration: 70, color: "#1e40af", icon: "💎" }
 ];
 
+const STORAGE_KEYS = {
+  BEST_TIME: 'breathChallengeBest',
+  ATTEMPTS: 'breathChallengeAttempts',
+};
+
+interface Level {
+  level: number;
+  name: string;
+  minDuration: number;
+  color: string;
+  icon: string;
+}
+
 const BreatheChallenge: React.FC = () => {
   const [isHolding, setIsHolding] = useState(false);
   const [duration, setDuration] = useState(0);
   const [bestTime, setBestTime] = useState(0);
-  const [currentLevel, setCurrentLevel] = useState(LEVELS[0]);
+  const [currentLevel, setCurrentLevel] = useState<Level>(LEVELS[0]);
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [isBreathingOut, setIsBreathingOut] = useState(false);
@@ -36,8 +72,8 @@ const BreatheChallenge: React.FC = () => {
 
   // Load saved data on component mount
   useEffect(() => {
-    const savedBestTime = localStorage.getItem('breathChallengeBest');
-    const savedAttempts = localStorage.getItem('breathChallengeAttempts');
+    const savedBestTime = localStorage.getItem(STORAGE_KEYS.BEST_TIME);
+    const savedAttempts = localStorage.getItem(STORAGE_KEYS.ATTEMPTS);
     
     if (savedBestTime) {
       const best = parseInt(savedBestTime);
@@ -78,7 +114,7 @@ const BreatheChallenge: React.FC = () => {
         setIsBreathingIn(false);
         // Now start the actual breath holding
         startBreathHolding();
-      }, 3000); // 3 seconds to breathe in
+      }, TIMING.BREATHE_IN_DURATION);
     }
   };
 
@@ -90,7 +126,7 @@ const BreatheChallenge: React.FC = () => {
       intervalRef.current = setInterval(() => {
         const elapsed = Math.floor((Date.now() - startTimeRef.current!) / 1000);
         setDuration(elapsed);
-      }, 100);
+      }, TIMING.TIMER_INTERVAL);
   };
 
   const stopTimer = () => {
@@ -114,16 +150,16 @@ const BreatheChallenge: React.FC = () => {
       // Start breathe out phase
       breatheOutTimeoutRef.current = setTimeout(() => {
         setIsBreathingOut(false);
-      }, 3000); // 3 seconds to breathe out
+      }, TIMING.BREATHE_OUT_DURATION);
       
       // Update best time and attempts
       const newAttempts = attempts + 1;
       setAttempts(newAttempts);
-      localStorage.setItem('breathChallengeAttempts', newAttempts.toString());
+      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, newAttempts.toString());
       
       if (finalDuration > bestTime) {
         setBestTime(finalDuration);
-        localStorage.setItem('breathChallengeBest', finalDuration.toString());
+        localStorage.setItem(STORAGE_KEYS.BEST_TIME, finalDuration.toString());
         updateLevel(finalDuration);
       }
     }
@@ -136,8 +172,8 @@ const BreatheChallenge: React.FC = () => {
     setDuration(0);
     setIsBreathingOut(false);
     setIsBreathingIn(false);
-    localStorage.removeItem('breathChallengeBest');
-    localStorage.removeItem('breathChallengeAttempts');
+    localStorage.removeItem(STORAGE_KEYS.BEST_TIME);
+    localStorage.removeItem(STORAGE_KEYS.ATTEMPTS);
     
     // Clear any active timeouts
     if (breatheOutTimeoutRef.current) {
@@ -172,8 +208,8 @@ const BreatheChallenge: React.FC = () => {
       <div className="breath-container">
         {/* Header */}
         <div className="header">
-          <h1 className="title">Breath Challenge</h1>
-          <p className="subtitle">Test your breath control and unlock new levels</p>
+          <h1 className="title">{TEXT.TITLE}</h1>
+          <p className="subtitle">{TEXT.SUBTITLE}</p>
         </div>
 
         {/* Cool Bar Chart */}
@@ -188,8 +224,8 @@ const BreatheChallenge: React.FC = () => {
                   }`}
                   style={{ 
                     height: `${20 + (level.minDuration / 2)}px`,
-                    backgroundColor: level.level <= currentLevel.level ? level.color : 'rgba(255, 255, 255, 0.1)',
-                    boxShadow: level.level <= currentLevel.level ? `0 0 20px ${level.color}40` : 'none'
+                    backgroundColor: level.level <= currentLevel.level ? level.color : COLORS.LOCKED_BAR,
+                    boxShadow: level.level <= currentLevel.level ? `0 0 20px ${level.color}40` : COLORS.DEFAULT_GLOW
                   }}
                 >
                   {level.level <= currentLevel.level && (
@@ -218,8 +254,8 @@ const BreatheChallenge: React.FC = () => {
         {getNextLevel() && (
           <div className="progress-container">
             <div className="progress-label">
-              <span>Progress to {getNextLevel()?.name}</span>
-              <span>{getNextLevel()?.minDuration}s target</span>
+              <span>{TEXT.PROGRESS_LABEL} {getNextLevel()?.name}</span>
+              <span>{getNextLevel()?.minDuration}s {TEXT.PROGRESS_TARGET}</span>
             </div>
             <div className="progress-bar">
               <div 
@@ -256,9 +292,9 @@ const BreatheChallenge: React.FC = () => {
                  isBreathingIn ? <div className="breathe-in-icon">🫁</div> :
                  isBreathingOut ? <div className="breathe-out-icon">💨</div> : <Play size={32} />}
                 <span>
-                  {isHolding ? 'Hold your breath...' : 
-                   isBreathingIn ? 'Take a deep breath in...' :
-                   isBreathingOut ? 'Now breathe out...' : 'Press & Hold'}
+                  {isHolding ? TEXT.BUTTON_HOLDING : 
+                   isBreathingIn ? TEXT.BUTTON_BREATHE_IN :
+                   isBreathingOut ? TEXT.BUTTON_BREATHE_OUT : TEXT.BUTTON_HOLD}
                 </span>
               </div>
               
@@ -282,7 +318,7 @@ const BreatheChallenge: React.FC = () => {
           <div className="stat-card">
             <Trophy size={24} />
             <div className="stat-content">
-              <span className="stat-label">Best Time</span>
+              <span className="stat-label">{TEXT.STAT_BEST_TIME}</span>
               <span className="stat-value">{formatTime(bestTime)}</span>
             </div>
           </div>
@@ -290,7 +326,7 @@ const BreatheChallenge: React.FC = () => {
           <div className="stat-card">
             <Target size={24} />
             <div className="stat-content">
-              <span className="stat-label">Attempts</span>
+              <span className="stat-label">{TEXT.STAT_ATTEMPTS}</span>
               <span className="stat-value">{attempts}</span>
             </div>
           </div>
@@ -308,15 +344,15 @@ const BreatheChallenge: React.FC = () => {
                 <X size={20} />
               </button>
               <div className="level-up-icon">{currentLevel.icon}</div>
-              <h2>Level Up!</h2>
-              <p>You've reached <span style={{ color: currentLevel.color }}>{currentLevel.name}</span></p>
+              <h2>{TEXT.LEVEL_UP_TITLE}</h2>
+              <p>{TEXT.LEVEL_UP_TEXT} <span style={{ color: currentLevel.color }}>{currentLevel.name}</span></p>
             </div>
           </div>
         )}
 
         {/* Achievement Graph */}
         <div className="achievement-graph">
-          <h3 className="graph-title">Achievement Path</h3>
+          <h3 className="graph-title">{TEXT.ACHIEVEMENT_TITLE}</h3>
           <div className="graph-container">
             <div className="graph-grid">
               {LEVELS.map((level, index) => (
@@ -339,13 +375,13 @@ const BreatheChallenge: React.FC = () => {
                       <div className="bar-name">{level.name}</div>
                     </div>
                     <div className="bar-requirement">
-                      {level.minDuration > 0 ? `${level.minDuration}s` : 'Start'}
+                      {level.minDuration > 0 ? `${level.minDuration}s` : TEXT.LEVEL_START}
                     </div>
                     {level.level < currentLevel.level && (
                       <div className="achievement-check">✓</div>
                     )}
                     {level.level === currentLevel.level && (
-                      <div className="current-indicator">NOW</div>
+                      <div className="current-indicator">{TEXT.LEVEL_NOW}</div>
                     )}
                   </div>
                   
@@ -371,7 +407,7 @@ const BreatheChallenge: React.FC = () => {
         </div>
 
         <button className="reset-button" onClick={resetStats}>
-          Reset Progress
+          {TEXT.RESET_BUTTON}
         </button>
       </div>
     </div>

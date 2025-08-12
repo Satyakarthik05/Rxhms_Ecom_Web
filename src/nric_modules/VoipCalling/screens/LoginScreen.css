@@ -36,6 +36,12 @@
   background-color: #fff;
 }
 
+.input-container input{
+    border: none;      
+    outline: none;     
+    background: none;
+}
+
 .input-icon {
   font-size: 18px;
   color: #aaa;
